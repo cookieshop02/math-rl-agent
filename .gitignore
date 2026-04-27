@@ -1,0 +1,25 @@
+# virtual environment
+venv/
+env/
+
+# python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# trained model (bahut bada hota hai)
+output/
+output_test/
+
+# environment variables
+.env
+
+# huggingface cache
+.cache/
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+desktop.ini
