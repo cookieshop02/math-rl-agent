@@ -47,6 +47,23 @@ def solve():
         "confidence": round(max(0, (reward + 1) / 2), 2),  # 0 to 1 scale
     })
 
+@app.route("/concept", methods=["POST"])
+def concept():
+    data = request.get_json()
+    if not data or "question" not in data:
+        return jsonify({"error": "question required"}), 400
+
+    question = data["question"].strip()
+
+    prompt = (
+        "You are a helpful math and AI concept explainer. "
+        "Explain concepts clearly, simply, and with examples. "
+        "Keep answers concise — 3 to 5 sentences max.\n\n"
+        f"Question: {question}\n\nAnswer:"
+    )
+
+    answer = generate_response(prompt, max_tokens=200)
+    return jsonify({"question": question, "answer": answer})
 
 if __name__ == "__main__":
     print("\n=== Math RL Agent API ===")
