@@ -8,3 +8,4 @@ flask>=3.0.0
 
 waitress
 groq
+peft
