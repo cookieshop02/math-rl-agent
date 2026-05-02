@@ -1,20 +1,37 @@
 import requests
+import os
+from groq import Groq
+import time
 
-API_URL = "https://scroll-library-squiggle.ngrok-free.dev/generate"
+# Config
+KAGGLE_URL = "https://scroll-library-squiggle.ngrok-free.dev/generate"
+groq_client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 def load_model():
-    print("Using Kaggle GPU — fine-tuned model!")
+    print("Model setup ready — Kaggle GPU + Groq fallback!")
 
 def generate_response(prompt, max_tokens=300):
+    # Pehle apna fine-tuned model try karo (Kaggle)
     try:
         response = requests.post(
-            API_URL,
+            KAGGLE_URL,
             json={"prompt": prompt},
-            timeout=120,
+            timeout=10,  # 10 sec mein reply nahi aaya toh Groq
         )
-        return response.json()["generated"]
-    except Exception as e:
-        return f"Error: {e}"
+        if response.status_code == 200:
+            print("Using fine-tuned model!")
+            return response.json()["generated"]
+    except Exception:
+        print("Kaggle offline — switching to Groq...")
+
+    # Fallback — Groq
+    response = groq_client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=max_tokens,
+    )
+    print("Using Groq fallback!")
+    return response.choices[0].message.content
 '''from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 import torch
