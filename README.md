@@ -6,8 +6,8 @@ An RL-based Math Problem Solving Agent — fine-tuned using **GRPO algorithm** (
 
 ## 🚀 Live Demo
 
-> App deployed on Render — [math-rl-agent.onrender.com](https://math-rl-agent.onrender.com/)
-> Fine-tuned model on HuggingFace — [SHIHICOOKIE02/qwen-math-rl-merged](https://huggingface.co/SHIHICOOKIE02/qwen-math-rl-merged)
+> App deployed on Render - [math-rl-agent.onrender.com](https://math-rl-agent.onrender.com/)
+> Fine-tuned model on HuggingFace - [SHIHICOOKIE02/qwen-math-rl-merged](https://huggingface.co/SHIHICOOKIE02/qwen-math-rl-merged)
 
 ---
 
