@@ -96,7 +96,11 @@ math-rl-agent/
 │   └── index.html  → Frontend UI with side panel bot
 └── requirements.txt
 ```
-
+## Training Code
+The `trainer.py`, `loader.py`, `main.py`, and `eval.py` 
+files contain the complete GRPO training pipeline used 
+to fine-tune the model on Kaggle GPU. The production 
+app uses the pre-trained model via `setup.py`.
 ---
 
 ## ⚙️ Setup & Run
